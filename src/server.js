@@ -9,8 +9,8 @@ const app = express()
 //conexao com BD
 db.connect()
 
-//habilita recepção de dados via POST
-app.use(express.urlencoded({ extended: true }))
+//habilita recepção de dados via json
+app.use(express.json())
 
 //definindo as rotas
 app.use('/api', routes)
