@@ -42,8 +42,19 @@ async function put(req,res) {
     })
 }
 
+async function remove(req,res) {
+    const { id } = req.params
+
+    const remove = await VeiculosModel.deleteOne({ _id: id })
+
+    const msg = remove.deletedCount ? 'success' : 'error'
+
+    res.send({ message: msg })
+}
+
 module.exports = {
     get,
     post,
     put,
+    remove,
 }
