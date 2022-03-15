@@ -18,7 +18,7 @@ async function post(req,res) {
         ano,    
     } = req.body
 
-    const veiculos = new VeiculosModel({
+    const veiculo = new VeiculosModel({
         placa,
         chassi,
         renavan,
@@ -27,11 +27,23 @@ async function post(req,res) {
         ano,     
     })
 
-    veiculos.save()
+    veiculo.save()
     res.send({ message: 'success' })
+}
+
+async function put(req,res) {
+    const { id } = req.params
+
+    const veiculo = await VeiculosModel.findOneAndUpdate({ _id: id }, req.body, { new: true })
+
+    res.send({ 
+        message: 'success', 
+        veiculo,
+    })
 }
 
 module.exports = {
     get,
     post,
+    put,
 }
